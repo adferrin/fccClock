@@ -82,14 +82,14 @@ function App() {
             <h1>Pomodoro Clock</h1>
             <div className="dual-container">
                 <Length 
-                title={"break length"} 
+                title={"Break Length"} 
                 changeTime={changeTime} 
                 type={"break"} 
                 time={breakTime}
                 formatTime={formatTime}
                 />
                 <Length 
-                title={"session length"} 
+                title={"Session Length"} 
                 changeTime={changeTime} 
                 type={"session"} 
                 time={sessionTime}
@@ -98,14 +98,14 @@ function App() {
             </div>
             <h3>{onBreak ? "Break" : "Session"}</h3>
             <h1>{formatTime(displayTime)}</h1>
-            <button className="btn-large cyan lighten-1" onClick={controlTime}>
+            <button id="start_stop" className="btn-large cyan lighten-1" onClick={controlTime}>
                 {timerOn ? (
                     <i className="material-icons">pause_circle_filled</i>
                 ): (
                     <i className="material-icons">play_circle_filled</i>
                 )}
             </button>
-            <button className="btn-large cyan lighten-1" onClick={resetTime}> 
+            <button id="reset" className="btn-large cyan lighten-1" onClick={resetTime}> 
             <i className="material-icons">autorenew</i>
             </button>
         </div>
