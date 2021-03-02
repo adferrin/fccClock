@@ -81,13 +81,15 @@ function App() {
         <div className="center-align">
             <h1>Pomodoro Clock</h1>
             <div className="dual-container">
-                <Length 
-                title={"Break Length"} 
-                changeTime={changeTime} 
-                type={"break"} 
-                time={breakTime}
-                formatTime={formatTime}
-                />
+                <div id="break-label">
+                    <Length 
+                    title={"Break Length"} 
+                    changeTime={changeTime} 
+                    type={"break"} 
+                    time={breakTime}
+                    formatTime={formatTime}
+                    />
+                </div>
                 <Length 
                 title={"Session Length"} 
                 changeTime={changeTime} 
