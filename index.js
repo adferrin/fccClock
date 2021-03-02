@@ -90,13 +90,15 @@ function App() {
                     formatTime={formatTime}
                     />
                 </div>
-                <Length 
-                title={"Session Length"} 
-                changeTime={changeTime} 
-                type={"session"} 
-                time={sessionTime}
-                formatTime={formatTime}
-                />
+                <div id="session-label">
+                    <Length 
+                    title={"Session Length"} 
+                    changeTime={changeTime} 
+                    type={"session"} 
+                    time={sessionTime}
+                    formatTime={formatTime}
+                    />
+                </div>
             </div>
             <h3>{onBreak ? "Break" : "Session"}</h3>
             <h1>{formatTime(displayTime)}</h1>
