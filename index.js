@@ -4,6 +4,13 @@ function App() {
     const [sessionTime, setSessionTime] = React.useState(25 * 60);
     const [timerOn, setTimerOn] = React.useState(false);
     const [onBreak, setOnBreak] = React.useState(false);
+    const [breakAudio, setBreakAudio] = React.useState(
+        new Audio("./breakTime.mp3")
+        );
+    const playBreakSound = () => {
+        breakAudio.currentTime = 0;
+        breakAudio.play();
+    }
 
     const formatTime = (time) => {
         let minutes = Math.floor(time/60);
@@ -41,6 +48,17 @@ function App() {
             date = new Date().getTime();
                 if (date > nextDate) {
                     setDisplayTime((prev) => {
+                        if (prev <= 0 && !onBreakVariable) {
+                            playBreakSound();
+                            onBreakVariable = true;
+                            setOnBreak(true)
+                            return breakTime;
+                        } else if (prev <= 0 && onBreakVariable){
+                            playBreakSound();
+                            onBreakVariable = false;
+                            setOnBreak(false)
+                            return sessionTime;
+                        }
                         return prev - 1;
                     });
                 nextDate += second;
@@ -78,6 +96,7 @@ function App() {
                 formatTime={formatTime}
                 />
             </div>
+            <h3>{onBreak ? "Break" : "Session"}</h3>
             <h1>{formatTime(displayTime)}</h1>
             <button className="btn-large cyan lighten-1" onClick={controlTime}>
                 {timerOn ? (
