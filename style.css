@@ -1,8 +1,9 @@
 
 body {
     color: white;
-    background-color: #333;
-}
+    background-color: rgb(51, 51, 51);
+    font-family: 'Anton', sans-serif;
+    font-family: 'Noto Serif SC', serif;}
 
 .dual-container {
     display: grid;
@@ -19,3 +20,4 @@ body {
     justify-items: center;
     align-items: center;
 }
+
