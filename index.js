@@ -24,12 +24,12 @@ function App() {
 
     const changeTime = (amount, type) => {
         if (type == "break") {
-            if (breakTime <=60 && amount < 0) {
+            if (breakTime <= 60 && amount < 0) {
                 return;
             }
             setBreakTime((prev) => prev + amount);
         } else {
-            if (sessionTime <=60 && amount < 0) {
+            if (sessionTime <= 60 && amount < 0) {
                 return;
             }    
             setSessionTime((prev) => prev + amount);
@@ -88,6 +88,8 @@ function App() {
                     type={"break"} 
                     time={breakTime}
                     formatTime={formatTime}
+                    breakDId={"break-decrement"}
+                    id={"break-length"}
                     />
                 </div>
                 <div id="session-label">
@@ -97,11 +99,13 @@ function App() {
                     type={"session"} 
                     time={sessionTime}
                     formatTime={formatTime}
+                    sessionDId={"session-decrement"}
+                    id={"session-length"}
                     />
                 </div>
             </div>
-            <h3>{onBreak ? "Break" : "Session"}</h3>
-            <h1>{formatTime(displayTime)}</h1>
+            <h3 id="timer-label">{onBreak ? "Break" : "Session"}</h3>
+            <h1 id="time-left">{formatTime(displayTime)}</h1>
             <button id="start_stop" className="btn-large cyan lighten-1" onClick={controlTime}>
                 {timerOn ? (
                     <i className="material-icons">pause_circle_filled</i>
@@ -116,21 +120,23 @@ function App() {
     );
 }
 
-function Length({title, changeTime, type, time, formatTime}){
+function Length({title, changeTime, type, time, formatTime, breakDId, sessionDId, id}){
     return (
         <div>
           <h3>{title}</h3>
           <div className="time-sets">
-              <button className="btn-small cyan lighten-1"
+              <button className="btn-small cyan lighten-1" id={breakDId}
                 onClick={() => changeTime(-60, type)}
               >
-                  <i className="material-icons">arrow_downward</i>
+                  <i className="material-icons" id={sessionDId}>arrow_downward</i>
               </button>
-              <h3>{formatTime(time)}</h3>
-              <button className="btn-small cyan lighten-1"
+              
+                <h3 id={id}>{formatTime(time)}</h3>
+              
+              <button className="btn-small cyan lighten-1" id="break-increment"
                 onClick={() => changeTime(60, type)}
               >
-                  <i className="material-icons">arrow_upward</i>
+                  <i className="material-icons" id="session-increment">arrow_upward</i>
               </button>
           </div>
         </div>
